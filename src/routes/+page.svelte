@@ -12,13 +12,24 @@
 	};
 	const getData = async () => {
 		await axios.get(`${apiUrl}.json`).then((response) => {
-			const data = Object.values(response.data);
-			dataManual = data;
+			// ambil data dari firebase
+			Object.keys(response.data).map((key) => {
+				// tambahkan index
+				response.data[key].id = key;
+				// tambahkan ke array
+				
+				dataManual = [...dataManual, response.data[key]];
+			})
+			console.log(dataManual);
+			
 		});
 	};
 	onMount(() => {
 		getData();
 	});
+	const deleteData = async (id) => {
+		
+	};
 </script>
 
 <div class="container">
@@ -43,16 +54,19 @@
 							</tr>
 						</thead>
 						<tbody>
-							{#each dataManual as item, index}
+							{#each dataManual as item}
 								<tr>
-									<td>{index + 1}</td>
+									<td>{item.id}</td>
 									<td>{item.nik}</td>
 									<td>{item.nama}</td>
 									<td>{item.kategori}</td>
 									<td>{item.jtabung}</td>
 									<td>{item.tanggal}</td>
 
-									<td></td>
+									<td>
+										<a href="/edit/{item.index}" class="btn btn-warning">edit</a>
+										<button class="btn btn-danger" on:click={deleteData(item.index)}>delete</button>
+									</td>
 								</tr>
 							{/each}
 						</tbody>
