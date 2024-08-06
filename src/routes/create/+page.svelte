@@ -12,6 +12,14 @@
         tanggal: ''
 	};
     $: state.tanggal = localStorage.getItem('tanggal')
+	$: state.jtabung = state.kategori ==="UKM" ? 5 : 1
+	const autocomplete = () => {
+		const data = datas.filter((data) => data.nik === state.nik)
+		if (data.length > 0) {
+			state.nama = data[0].nama
+			state.alamat = data[0].alamat
+		}
+	}
     const handleSubmit = async () => {
         console.log(state)
     }
@@ -25,7 +33,7 @@
 				<form on:submit|preventDefault={handleSubmit}>
 					<div class="mb-1">
 						<label for="nik" class="form-label">NIK</label>
-						<input type="text" class="form-control" id="nik" bind:value={state.nik} />
+						<input type="text" class="form-control" id="nik" bind:value={state.nik} on:input={autocomplete} />
 					</div>
 					<div class="mb-1">
 						<label for="nama" class="form-label">Nama</label>
