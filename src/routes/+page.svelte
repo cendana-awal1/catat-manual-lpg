@@ -17,7 +17,7 @@
 				// tambahkan index
 				response.data[key].id = key;
 				// tambahkan ke array
-				
+
 				dataManual = [...dataManual, response.data[key]];
 			})
 			console.log(dataManual);
@@ -28,6 +28,17 @@
 		getData();
 	});
 	const deleteData = async (id) => {
+		await axios
+			.delete(`${apiUrl}/${id}.json`)
+			.then(() => {
+				// hapus data dari array
+				dataManual = dataManual.filter((item) => {
+					return item.id !== id;
+				});
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 		
 	};
 </script>
@@ -40,7 +51,7 @@
 				<a href="/create" class="btn btn-primary">Create</a>
 				<!-- table data -->
 				<div class="table-responsiv">
-					<table class="table tabe-hover mt-3 table-striped">
+					<table class="table tabe-hover mt-3 table-striped text-center">
 						<thead>
 							<tr>
 								<th scope="col">#</th>
@@ -54,9 +65,9 @@
 							</tr>
 						</thead>
 						<tbody>
-							{#each dataManual as item}
+							{#each dataManual as item,index}
 								<tr>
-									<td>{item.id}</td>
+									<td>{index+1}</td>
 									<td>{item.nik}</td>
 									<td>{item.nama}</td>
 									<td>{item.kategori}</td>
@@ -64,8 +75,8 @@
 									<td>{item.tanggal}</td>
 
 									<td>
-										<a href="/edit/{item.index}" class="btn btn-warning">edit</a>
-										<button class="btn btn-danger" on:click={deleteData(item.index)}>delete</button>
+										<a href="/edit/{item.id}" class="btn btn-warning">edit</a>
+										<button class="btn btn-danger" on:click={deleteData(item.id)}>delete</button>
 									</td>
 								</tr>
 							{/each}

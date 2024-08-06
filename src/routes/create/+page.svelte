@@ -30,6 +30,13 @@
 			const response = await axios.post(`${apiUrl}.json`, state);
 			alert('Data Berhasil');
 			console.log(response);
+			state = {
+				nik: '',
+				nama: '',
+				alamat: '',
+				kategori: '',
+				jtabung: 0
+			}
 		}
 		catch (error) {
 			console.log(error);
