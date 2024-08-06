@@ -1,6 +1,6 @@
 <script>
 	import axios from 'axios';
-	import data from '../../lib/data.json';
+	import datas from '../../lib/data.json';
     let apiUrl = import.meta.env.VITE_API_URL
 
 	let state = {
