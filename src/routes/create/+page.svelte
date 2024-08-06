@@ -11,21 +11,36 @@
 		jtabung: 0,
         tanggal: ''
 	};
-    $: state.tanggal = localStorage.getItem('tanggal')
+    // $: state.tanggal = 
+		
+	$: state.tanggal = localStorage.getItem('tanggal')
 	$: state.jtabung = state.kategori ==="UKM" ? 5 : 1
 	const autocomplete = () => {
-		const data = datas.filter((data) => data.nik === state.nik)
+		const data = datas.filter((item) => {
+			return item.nik == state.nik;
+		});
 		if (data.length > 0) {
 			state.nama = data[0].nama
 			state.alamat = data[0].alamat
+			// state.tanggal = localStorage.getItem('tanggal')
 		}
 	}
     const handleSubmit = async () => {
-        console.log(state)
+		try {
+			const response = await axios.post(`${apiUrl}.json`, state);
+			alert('Data Berhasil');
+			console.log(response);
+		}
+		catch (error) {
+			console.log(error);
+		}
     }
 </script>
 
 <h3 class="text-center mt-5">Create</h3>
+<h4>
+	Tanggal: {state.tanggal}
+</h4>
 <div class="container">
 	<div class="row justify-content-center">
 		<div class="col-md-6">
@@ -55,6 +70,8 @@
 						<input type="number" class="form-control" id="jtabung" bind:value={state.jtabung} />
 					</div>
 					<button type="submit" class="btn btn-primary">Submit</button>
+					<!-- reset -->
+					<button type="reset" class="btn btn-danger">Reset</button>
 				</form>
 			</div>
 		</div>
