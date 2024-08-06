@@ -1,6 +1,6 @@
 <script>
 </script>
-<nav class="navbar bg-dark navbar-dark">
+<nav class="navbar bg-dark navbar-dark fixed-top">
 	<div class="container-fluid">
 	  <a href="/" class="navbar-brand">Pangkalan LPG</a>
 	  <form class="d-flex" role="search">
