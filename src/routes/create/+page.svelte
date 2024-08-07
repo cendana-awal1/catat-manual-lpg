@@ -44,13 +44,11 @@
     }
 </script>
 
-<h3 class="text-center mt-5">Create</h3>
-<!-- <h4>
-	Tanggal: {state.tanggal}
-</h4> -->
+
 <div class="container">
 	<div class="row justify-content-center">
-		<div class="col-md-6">
+		<div class="col-md-6 mt-3">
+			<h3 class="text-center mt-5">Create</h3>
 			<div class="card p-4 mt-1 shadow rounded">
 				<form on:submit|preventDefault={handleSubmit}>
 					<div class="mb-1">

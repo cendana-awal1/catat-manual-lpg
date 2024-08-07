@@ -1,6 +1,7 @@
 <script>
 	import axios from 'axios';
 	import { onMount } from 'svelte';
+	import TableTransaksi from '../lib/TableTransaksi.svelte';
 	let dataManual = [];
 	let apiUrl = import.meta.env.VITE_API_URL;
 
@@ -48,10 +49,11 @@
 		<div class="col-md-10">
 			<h1>Catat Manual Transaksi LPG</h1>
 			<div>
-				<a href="/create" class="btn btn-primary">Create</a>
+				<a href="/create" class="btn btn-primary mt-5">Create</a>
 				<!-- table data -->
 				<div class="table-responsiv">
-					<table class="table tabe-hover mt-3 table-striped text-center">
+					<TableTransaksi dataManual={dataManual} {deleteData} />
+					<!-- <table class="table tabe-hover mt-3 table-striped text-center">
 						<thead>
 							<tr>
 								<th scope="col">#</th>
@@ -81,7 +83,7 @@
 								</tr>
 							{/each}
 						</tbody>
-					</table>
+					</table> -->
 				</div>
 			</div>
 		</div>

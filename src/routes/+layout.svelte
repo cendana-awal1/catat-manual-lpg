@@ -1,7 +1,6 @@
 <script>
-	import Navbar from "../lib/Navbar.svelte";
-
-
+	import Navbar from '../lib/Navbar.svelte';
 </script>
-<Navbar/>
-<slot/>
+
+<Navbar />
+<slot />

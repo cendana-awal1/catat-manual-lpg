@@ -1,4 +1,10 @@
 <script>
+	let tanggal =''
+	const saveTanggal = () => {
+		localStorage.setItem('tanggal', tanggal);
+		alert('Tanggal berhasil disimpan');
+		console.log(localStorage.getItem('tanggal'));
+	};
 </script>
 
 <nav class="navbar bg-dark navbar-dark fixed-top">
@@ -13,8 +19,8 @@
 		</span>
 
 		<form class="d-flex" role="search">
-			<input class="form-control me-2" type="text" placeholder="Input Tanggal" aria-label="text" />
-			<button class="btn btn-outline-success" type="submit">Simpan</button>
+			<input class="form-control me-2" type="text" placeholder="Input Tanggal" aria-label="text" bind:value={tanggal} />
+			<button class="btn btn-outline-success" type="submit" on:click={saveTanggal}>Simpan</button>
 		</form>
 	</div>
 </nav>
