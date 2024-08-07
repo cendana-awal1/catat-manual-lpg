@@ -82,7 +82,7 @@
 				</div>
 				<!-- table data -->
 				{#if dataManual.length > 0}
-					<div class="table-responsiv">
+					<div class="table-responsive">
 						<TableTransaksi {dataManual} {deleteData} />
 					</div>
 				{:else}
