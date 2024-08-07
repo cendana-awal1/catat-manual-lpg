@@ -46,7 +46,11 @@
 <div class="container">
 	<div class="row justify-content-center">
 		<div class="col-md-6 mt-3">
-			<h3 class="text-center mt-5">Create</h3>
+			<div>
+
+				<h3 class="text-center mt-5">Buat Transaksi Baru</h3>
+				<a href="/" class="btn btn-success">&laquo;Back</a>
+			</div>
 			<div class="card p-4 mt-1 shadow rounded">
 				<FormTransaksi {state} {handleSubmit} {autocomplete} />
 			</div>
