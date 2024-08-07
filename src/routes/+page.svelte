@@ -5,11 +5,10 @@
 	import LoadingSlider from '../lib/LoadingSlider.svelte';
 	import ExcelJS from 'exceljs';
 	let dataManual = [];
+	let dataValue =[]
 	let apiUrl = import.meta.env.VITE_API_URL;
 
-	let tanggal = '';
-	// simpan tanggal di localStorage
-
+	
 	const getData = async () => {
 		await axios.get(`${apiUrl}.json`).then((response) => {
 			// ambil data dari firebase
@@ -23,8 +22,17 @@
 			console.log(dataManual);
 		});
 	};
+	const getDataValue = async () => {
+		await axios.get(`${apiUrl}.json`).then((response) => {
+			// ambil data dari firebase
+			const data = Object.values(response.data);
+			dataValue=data
+			console.log(dataValue)	
+		});
+	}
 	onMount(() => {
 		getData();
+		getDataValue();
 	});
 	const deleteData = async (id) => {
 		await axios
@@ -53,10 +61,10 @@
 			{ header: 'Tanggal', key: 'tanggal', width: 20 }
 		];
 		// Add Array Rows
-		worksheet.addRows(dataManual);
+		worksheet.addRows(dataValue);
 		// Generate Excel File with given name
-		workbook.xlsx.writeBuffer().then((dataManual) => {
-			const blob = new Blob([dataManual], {
+		workbook.xlsx.writeBuffer().then((dataValue) => {
+			const blob = new Blob([dataValue], {
 				type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 			});
 			const url = window.URL.createObjectURL(blob);
@@ -71,7 +79,7 @@
 	};
 </script>
 
-<div class="container">
+<div class="container mt-5">
 	<div class="row justify-content-center">
 		<div class="col-md-10">
 			<h1>Catat Manual Transaksi LPG</h1>
